@@ -1,0 +1,18 @@
+version: '2'
+services:
+    apache2:
+        build: apache2
+        ports:
+            - "80:80"
+        volumes:
+            - /opt/www:/var/www/html/
+
+    mysql:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
+        expose:
+            - 3306
+        links:
+            - apache2
+
